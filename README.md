@@ -62,7 +62,7 @@ conda activate cmn
 ### Core Installation
 
 ```bash
-git clone https://github.com/your-org/chaotic-memory-nets.git
+git clone https://github.com/SteveProkovas/chaotic-memory-nets.git
 cd chaotic-memory-nets
 
 # Install base dependencies
