@@ -237,3 +237,6 @@ def store_patterns(self, patterns):
         # Keep in fast RAM
         self.patterns = patterns.copy()
 ``
+
+License
+This project is licensed under the Apache 2.0 License.
