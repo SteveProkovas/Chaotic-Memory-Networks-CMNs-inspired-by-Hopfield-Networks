@@ -236,7 +236,4 @@ def store_patterns(self, patterns):
     else:
         # Keep in fast RAM
         self.patterns = patterns.copy()
-```
- 
-> **Hardware Profile**: AMD Ryzen 5 4600H, 8GB RAM, x64  
-> **Certification Date**: July 31, 2025
+``
