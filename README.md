@@ -181,6 +181,30 @@ graph TD
     K --> N[Fault Recovery]
 ```
 
+## Google Colab
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Runner
+    participant Colab
+    participant Drive
+    
+    User->>Runner: Execute with parameters
+    Runner->>Colab: Mount Google Drive
+    Colab->>Drive: Authenticate
+    Drive-->>Runner: Mount status
+    Runner->>Drive: Setup project directory
+    Runner->>Colab: Enable timeout prevention
+    Runner->>Runner: Parse parameters
+    Runner->>Runner: Save initial session
+    Runner->>Runner: Execute experiment
+    Runner->>Drive: Save results
+    Runner->>Drive: Save final session
+    Runner-->>User: Exit with status
+```
+
+
 ```mermaid
 graph TD
     A[Develop on AMD Ryzen] --> B{Test small-scale}
