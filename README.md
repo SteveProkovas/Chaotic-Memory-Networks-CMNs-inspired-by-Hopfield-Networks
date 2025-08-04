@@ -181,6 +181,14 @@ graph TD
     K --> N[Fault Recovery]
 ```
 
+```mermaid
+graph TD
+    A[Develop on AMD Ryzen] --> B{Test small-scale}
+    B -->|CPU| C[Run constrained_resources experiments]
+    B -->|Prototype| D[Implement new features]
+    D --> E[Commit to Git]
+    E --> F[Push to GitHub]
+```
 ## 🧪 Reproducible Research
 
 ```bash
