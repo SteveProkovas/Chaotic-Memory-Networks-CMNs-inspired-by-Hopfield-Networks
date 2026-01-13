@@ -1,0 +1,54 @@
+% Lorenz Chaotic System
+% Demonstrates sensitivity to initial conditions
+
+clear; close all; clc;
+
+% Lorenz parameters (classic chaotic regime)
+sigma = 10;
+beta  = 8/3;
+rho   = 28;
+
+% Time settings
+dt = 0.01;
+T  = 40;
+t  = 0:dt:T;
+
+% Initial conditions (almost identical!)
+x1 = [1; 1; 1];
+x2 = [1.001; 1; 1];
+
+% Preallocate
+X1 = zeros(3, length(t));
+X2 = zeros(3, length(t));
+
+X1(:,1) = x1;
+X2(:,1) = x2;
+
+% Lorenz equations
+lorenz = @(x) [
+    sigma*(x(2)-x(1));
+    x(1)*(rho-x(3)) - x(2);
+    x(1)*x(2) - beta*x(3)
+];
+
+% Time integration (Euler method)
+for i = 2:length(t)
+    X1(:,i) = X1(:,i-1) + dt * lorenz(X1(:,i-1));
+    X2(:,i) = X2(:,i-1) + dt * lorenz(X2(:,i-1));
+end
+
+% Plot
+figure('Color','k');
+plot3(X1(1,:), X1(2,:), X1(3,:), 'r', 'LineWidth', 1.2);
+hold on;
+plot3(X2(1,:), X2(2,:), X2(3,:), 'c--', 'LineWidth', 1.2);
+
+grid on;
+axis tight;
+view(45, 25);
+
+title('Lorenz Attractor – Chaotic Divergence', 'Color','w', 'FontSize',14);
+xlabel('X','Color','w'); ylabel('Y','Color','w'); zlabel('Z','Color','w');
+
+set(gca, 'Color','k', 'XColor','w', 'YColor','w', 'ZColor','w');
+legend('Initial (1,1,1)', 'Initial (1.001,1,1)', 'TextColor','w');
