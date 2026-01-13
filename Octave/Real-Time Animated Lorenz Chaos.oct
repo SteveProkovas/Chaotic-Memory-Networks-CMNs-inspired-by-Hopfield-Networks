@@ -1,0 +1,56 @@
+% Real-time Animated Lorenz Attractor
+% GNU Octave compatible
+
+clear; close all; clc;
+
+% Lorenz parameters (chaotic)
+sigma = 10;
+beta  = 8/3;
+rho   = 28;
+
+% Time step
+dt = 0.01;
+
+% Initial condition
+x = [1; 1; 1];
+
+% Create figure
+figure('Color','k');
+hold on;
+grid on;
+axis([-25 25 -35 35 0 50]);
+view(45,25);
+
+xlabel('X','Color','w');
+ylabel('Y','Color','w');
+zlabel('Z','Color','w');
+title('Real-Time Chaotic Motion (Lorenz System)', ...
+      'Color','w','FontSize',14);
+
+set(gca,'Color','k','XColor','w','YColor','w','ZColor','w');
+
+% Lorenz system
+lorenz = @(x) [
+    sigma*(x(2)-x(1));
+    x(1)*(rho-x(3)) - x(2);
+    x(1)*x(2) - beta*x(3)
+];
+
+% Plot handle
+h = plot3(x(1), x(2), x(3), 'r', 'LineWidth', 1.5);
+
+% Animation loop
+for k = 1:8000
+    x = x + dt * lorenz(x);
+
+    % Append new point
+    X = get(h, 'XData');
+    Y = get(h, 'YData');
+    Z = get(h, 'ZData');
+
+    set(h, 'XData', [X x(1)], ...
+           'YData', [Y x(2)], ...
+           'ZData', [Z x(3)]);
+
+    drawnow;
+end
